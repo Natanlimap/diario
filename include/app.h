@@ -8,11 +8,14 @@
 struct App
 {
     Diary diary;
+
     App(const std::string& filename);
     int run(int argc, char* argv[]);
-    int show_usage();
+	int showUsage();
     void add();
     void add(const std::string message);
     void list();
+    int filterAction(int argc, char *argv[]);
+
 };
 #endif

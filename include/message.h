@@ -9,7 +9,7 @@
 struct Message{
 	Date date;
 	Time time;
-	std::string message;
-}
+	std::string content;
+};
 
 #endif
