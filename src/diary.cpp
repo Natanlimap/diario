@@ -105,6 +105,4 @@ void Diary::list(){
 	for(int i =0 ; i < size; i++){
 		std::cout << messages[i].content << std::endl;
 	}
-    write();
-
 }
