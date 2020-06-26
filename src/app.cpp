@@ -1,6 +1,6 @@
 #include <iostream>
 #include <string.h>
-
+#include <util.h>
 #include "../include/app.h"
 #include "../include/message.h"
 
@@ -20,7 +20,11 @@ void App::add()
 
 void App::add(const std::string message)
 {
-    diary.add(message);
+    Date date;
+    date.set_from_string(get_current_date());
+    Time time;
+    time.set_from_string(get_current_time());
+    diary.add(message, date, time);
     diary.write();
 }
 

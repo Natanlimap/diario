@@ -1,37 +1,64 @@
 #include "datetime.h"
 
-#include <sstream>
-
-Date::Date() : year(0), month(0), day(0) {
-}
-void Date::set_from_string(const std::string& date){
+void Date::set_from_string(std::string date){
 	 Date d;
     std::stringstream stream(date);
     char discard;
-
-    stream >> d.day >> discard >> d.month >> discard >> d.year;
+    stream >> d.day;
+    stream >> discard;
+    stream >> d.month;
+    stream >> discard;
+    stream >> d.year; 
+    day = d.day;
+    month = d.month;
+    year = d.year;
 }
+
 std::string Date::to_string() {
 	std::stringstream stream;
-	stream << day << "/" << month << year;	
+  if(day < 9){
+    stream << "0";
+  }
+  stream << day << "/";
+  if(month < 9){
+      stream << "0";
+
+  }
+	stream << month << "/";
+  stream  << year;	
   return stream.str();
 }
 
-Time::Time() : hour(0), minute(0), second(0) {
 
-}
 
 void Time::set_from_string(const std::string& time){
-  Time t;
-
+    Time d;
     std::stringstream stream(time);
     char discard;
-
-    stream >> t.hour >> discard >> t.minute >> discard >> t.second;
+    stream >> d.hour;
+    stream >> discard;
+    stream >> d.minute;
+    stream >> discard;
+    stream >> d.second; 
+    hour = d.hour;
+    minute = d.minute;
+    second = d.second;
 }
 
 std::string Time::to_string() {
   std::stringstream stream;
-  stream << hour << "/" << minute << "/" << second;  
+   if(hour < 9){
+    stream << "0"; 
+  }
+  stream << hour << ":";
+  if(minute < 9){
+      stream << "0";
+  }
+  stream << minute << ":";
+  if(second < 9){
+      stream << "0";
+  }
+  stream << second;
+
   return stream.str();
 }

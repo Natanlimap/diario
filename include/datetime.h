@@ -1,6 +1,7 @@
 #ifndef W5N_DATETIME_H
 #define W5N_DATETIME_H
-
+#include <sstream>
+#include <iostream>
 #include <string>
 
 struct Date
@@ -8,7 +9,7 @@ struct Date
 	int year;
 	int month;
 	int day;
-	void set_from_string(const std::string& date); 
+	void set_from_string(std::string date); 
 	std::string to_string();
 };
 
