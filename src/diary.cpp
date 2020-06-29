@@ -5,7 +5,7 @@ Diary::Diary(const std::string& filename): filename(filename), max(10), size(0),
         loadMessage();
 }
 Diary::~Diary(){
-    write();
+        write();
         delete[] messages;
 }
 void Diary::realoc()
