@@ -15,6 +15,7 @@ struct App
     void add();
     void add(const std::string message);
     void list();
+    Message * search(std::string what);
     int filterAction(int argc, char *argv[]);
 
 };

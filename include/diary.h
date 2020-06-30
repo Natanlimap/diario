@@ -22,6 +22,7 @@ struct Diary{
     void add(const std::string& message, Date mdate, Time mtime);
     void write();
 	void list();
+	Message* search(std::string what);
 	void loadMessage();
 	void realoc();
 

@@ -106,3 +106,14 @@ void Diary::list(){
 		std::cout << messages[i].content << std::endl;
 	}
 }
+
+
+Message* Diary::search(std::string what){
+    for(int i =0 ; i < size; i++){
+        if(messages[i].content.find(what) != std::string::npos){
+            std::cout << messages[i].content << std::endl;
+            return &messages[i];
+        }
+    }
+    return NULL;
+}

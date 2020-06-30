@@ -34,6 +34,11 @@ void App::list()
     diary.list();
 }
 
+Message *App::search(std::string what)
+{
+   return diary.search(what);
+}
+
 
 int App::showUsage(){
 		std::cout << "Uso:" << std::endl << "./diary add" << std::endl << "./diary add <message>" << std::endl << "./diary list" << std::endl; //Mostra para o usuario a entrada correta para o programa.
@@ -58,6 +63,13 @@ int App::run(int argc, char* argv[])
     } else if (action == "list") {
         list();
     } else if (action == "search") {
+          if (argc == 2) {
+            std::string what;
+            std::cin >> what;
+            search(what);
+        } else {
+            search(argv[2]);
+        }
     } else {
         return showUsage();
     }
