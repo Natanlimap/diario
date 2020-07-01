@@ -1,34 +1,12 @@
 #include "diary.h"
 
-Diary::Diary(const std::string& filename): filename(filename), max(10), size(0), messages(nullptr){
-        messages = new Message[max];
+Diary::Diary(const std::string& filename): filename(filename), max(10), size(0), messages(0){
         loadMessage();
 }
 Diary::~Diary(){
         write();
-        delete[] messages;
 }
-void Diary::realoc()
-{
-    if (size >= max) {
-        Message *temp;
-        temp = new Message[max*2];
-        for (int i = 0; i < max; ++i)
-        {
-            temp[i] = messages[i];
-        }
-        delete[] messages;
-        messages = new Message[max*2];
-        
-        for (int i = 0; i < max; ++i)
-        {
-            messages[i] = temp[i];
-        }
-        delete[] temp;
-        max *= 2;
-    }
 
-}
 void Diary::loadMessage()
 {
     std::ifstream file; //arquivo 
@@ -62,12 +40,12 @@ void Diary::loadMessage()
 
 void Diary::add(const std::string& message, Date mdate, Time mtime)
 {
-    realoc();
+    
     Message m;
     m.date = mdate;
     m.time = mtime;
     m.content = message;
-    messages[size] = m;
+    messages.push_back(m);
     size++;
 
 }
@@ -108,12 +86,13 @@ void Diary::list(){
 }
 
 
-Message* Diary::search(std::string what){
+std::vector<Message> Diary::search(std::string what){
+
+    std::vector<Message> temp;
     for(int i =0 ; i < size; i++){
         if(messages[i].content.find(what) != std::string::npos){
-            std::cout << messages[i].content << std::endl;
-            return &messages[i];
+            temp.push_back(messages[i]);
         }
     }
-    return NULL;
+    return temp;
 }

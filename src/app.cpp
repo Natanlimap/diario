@@ -14,12 +14,13 @@ void App::add()
     std::string message;
     std::cout << "Enter your message:" << std::endl;
     std::getline(std::cin, message);
-
     add(message);
+
 }
 
 void App::add(const std::string message)
 {
+    std::cout << message << std::endl;
     Date date;
     date.set_from_string(get_current_date());
     Time time;
@@ -34,14 +35,16 @@ void App::list()
     diary.list();
 }
 
-Message *App::search(std::string what)
+void App::search(std::string what)
 {
-   return diary.search(what);
+    std::vector<Message> printer = diary.search(what);
+
+   for (auto const& i: printer) {
+        std::cout << i.content << std::endl;
+    }
 }
-
-
 int App::showUsage(){
-		std::cout << "Uso:" << std::endl << "./diary add" << std::endl << "./diary add <message>" << std::endl << "./diary list" << std::endl; //Mostra para o usuario a entrada correta para o programa.
+		std::cout << "Uso:" << std::endl << "./diary add" << std::endl << "./diary add <message>" << std::endl << "./diary list" << std::endl << "./diary search"<<std::endl<< "./diary search <message>" << std::endl; //Mostra para o usuario a entrada correta para o programa.
 		return 1;
 }
 

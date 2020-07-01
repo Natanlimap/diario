@@ -2,7 +2,7 @@
 #define W5N_APP_H
 
 #include "diary.h"
-
+#include <vector>
 #include <string>
 
 struct App
@@ -15,7 +15,7 @@ struct App
     void add();
     void add(const std::string message);
     void list();
-    Message * search(std::string what);
+    void search(std::string what);
     int filterAction(int argc, char *argv[]);
 
 };

@@ -8,12 +8,14 @@
 #include <iostream>
 #include <fstream>
 #include <datetime.h>
+#include <vector>
+
 struct Diary{
 
 	std::string filename;
 	size_t size;
 	size_t max;
-	Message *messages;
+	std::vector<Message> messages;
 
 	Diary(const std::string &filename);
 	~Diary();
@@ -22,9 +24,8 @@ struct Diary{
     void add(const std::string& message, Date mdate, Time mtime);
     void write();
 	void list();
-	Message* search(std::string what);
+	std::vector<Message> search(std::string what);
 	void loadMessage();
-	void realoc();
 
 
 };
