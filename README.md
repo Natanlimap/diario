@@ -15,13 +15,11 @@ Essa funcao adiciona uma mensagem no vector da classe e e utilizada tanto pelo c
 Para adicionar alguma mensagem basta digitar 
 ```sh
 ./diary add
-./a.out
 ```
 ou 
 
 ```sh
 ./diary add <mensagem> 
-./a.out
 ```
 
 ### LIST
@@ -30,7 +28,6 @@ Essa funcao lista todas as mensagens do arquivo predefinido em (diary.config) e 
 Para listar as mensagens 
 ```sh
 ./diary list
-./a.out
 ```
 
 ### SEARCH
@@ -39,7 +36,6 @@ Essa funcao retorna um vector com todas as mensagens que possuem a substring que
 Para executar, basta 
 ```sh
 ./diary search
-./a.out
 ```
 
 ## Configurando o projeto
