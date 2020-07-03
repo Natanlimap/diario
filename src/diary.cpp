@@ -18,8 +18,17 @@ void Diary::getConfig()
     std::ifstream file; //arquivo 
     std::string line; // linha a ser lida
     file.open("diary.config");
-
     getline(file, line);
+    if(line.size() == 0){
+         std::ofstream create; //arquivo 
+         create.open("diary.config");
+         create << "path=./diary.md" << std::endl;
+         create << "default_format=[%d %t] %m" << std::endl;
+         create.close();
+         getConfig();
+         return;
+    }
+
     filename = line.substr(5);
 
     getline(file, line);
