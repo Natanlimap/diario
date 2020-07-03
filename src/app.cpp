@@ -8,6 +8,8 @@ App::App(const std::string &filename): diary(filename) {
 
 }
 
+
+
 void App::add()
 {
 	
@@ -29,10 +31,39 @@ void App::add(const std::string message)
     diary.write();
 }
 
+void App::interactive(){
+    std::string option;
 
-void App::list()
-{
-    diary.list();
+    do {
+        std::cout << "Diario 1.0" << std::endl;
+        std::cout << "Selecione uma acao" << std::endl;
+        std::cout << "1) Listar mensagens" << std::endl;
+        std::cout << "2) Adicionar mensagem" << std::endl;
+        std::cout <<std::endl <<"0) Finalizar" << std::endl;
+        
+        std::getline(std::cin, option);
+        
+
+       
+        std::cout << "\n";
+
+        if(option == "1"){
+        
+            diary.list();
+        
+        }else if(option == "2"){
+
+            std::cin.clear();
+            
+            add();
+        
+        }
+        std::cout << "\n";
+        //cleaning terminal
+
+         
+
+   }while(option!="0");
 }
 
 void App::search(std::string what)
@@ -44,7 +75,7 @@ void App::search(std::string what)
     }
 }
 int App::showUsage(){
-		std::cout << "Uso:" << std::endl << "./diary add" << std::endl << "./diary add <message>" << std::endl << "./diary list" << std::endl << "./diary search"<<std::endl<< "./diary search <message>" << std::endl; //Mostra para o usuario a entrada correta para o programa.
+		std::cout << "Uso:" << std::endl << "./diary add" << std::endl << "./diary add <message>" << std::endl << "./diary list" << std::endl << "./diary search"<<std::endl<< "./diary search <message>" << std::endl << "./diary interactive" << std::endl; //Mostra para o usuario a entrada correta para o programa.
 		return 1;
 }
 
@@ -55,17 +86,19 @@ int App::run(int argc, char* argv[])
         return showUsage();
     }
 
-    std::string action = argv[1];
-
+    std::string action = argv[1];        
     if (action == "add") {
         if (argc == 2) {
             add();
         } else {
             add(argv[2]);
         }
+
     } else if (action == "list") {
-        list();
+        diary.list();
+    
     } else if (action == "search") {
+     
           if (argc == 2) {
             std::string what;
             std::cin >> what;
@@ -73,9 +106,14 @@ int App::run(int argc, char* argv[])
         } else {
             search(argv[2]);
         }
+    }else if(action == "interactive"){
+        interactive();
+
     } else {
+
         return showUsage();
     }
+    
 
     return 0;
 }

@@ -16,7 +16,8 @@ struct Diary{
 	size_t size;
 	size_t max;
 	std::vector<Message> messages;
-
+	std::string format;
+	
 	Diary(const std::string &filename);
 	~Diary();
 
@@ -24,9 +25,10 @@ struct Diary{
     void add(const std::string& message, Date mdate, Time mtime);
     void write();
 	void list();
-	std::vector<Message> search(std::string what);
 	void loadMessage();
+    void getConfig();
 
+	std::vector<Message> search(std::string what);
 
 };
 

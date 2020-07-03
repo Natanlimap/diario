@@ -14,9 +14,10 @@ struct App
 	int showUsage();
     void add();
     void add(const std::string message);
-    void list();
     void search(std::string what);
     int filterAction(int argc, char *argv[]);
+    void interactive();
+
 
 };
 #endif

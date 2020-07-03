@@ -17,3 +17,4 @@ std::string get_current_time()
 {
 	return format_current_date("%H:%M:%S");
 }
+

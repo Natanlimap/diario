@@ -1,10 +1,30 @@
 #include "diary.h"
 
-Diary::Diary(const std::string& filename): filename(filename), max(10), size(0), messages(0){
+Diary::Diary(const std::string& filename): filename(filename), max(10), size(0), messages(0)
+{
+        getConfig();
         loadMessage();
 }
-Diary::~Diary(){
+Diary::~Diary()
+{
+    if(size > 0){
         write();
+    }
+}
+
+
+void Diary::getConfig()
+{
+    std::ifstream file; //arquivo 
+    std::string line; // linha a ser lida
+    file.open("diary.config");
+
+    getline(file, line);
+    filename = line.substr(6);
+
+    getline(file, line);
+    format = line.substr(16);
+  
 }
 
 void Diary::loadMessage()
@@ -52,7 +72,8 @@ void Diary::add(const std::string& message, Date mdate, Time mtime)
 
 
 
-void Diary::write(){
+void Diary::write()
+{
     std::ofstream file;
     Date currentDate = messages[0].date;
     file.open(filename);
@@ -79,14 +100,44 @@ void Diary::write(){
     file.close();
 }
 	
-void Diary::list(){
+void Diary::list()
+{
+ 
+
 	for(int i =0 ; i < size; i++){
-		std::cout << messages[i].content << std::endl;
+        for(int j = 0; j < format.size(); j++){
+            if(format[j] == '%'){
+                
+                switch(format[j+1]){
+                    case 'd':
+                        std::cout << messages[i].date.to_string();
+                        j= j+2;
+                        break;
+
+                    case 't':
+                        std::cout << messages[i].time.to_string();
+                        j= j+2;
+                        break;
+
+                    case 'm':
+                        std::cout << messages[i].content;
+                        j= j+2;
+                        break;
+                    default:
+                    std::cout << "%";
+                }
+
+            }
+            std::cout << format[j];
+        }
+        std::cout << std::endl;
+
 	}
 }
 
 
-std::vector<Message> Diary::search(std::string what){
+std::vector<Message> Diary::search(std::string what)
+{
 
     std::vector<Message> temp;
     for(int i =0 ; i < size; i++){
