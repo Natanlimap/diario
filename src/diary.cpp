@@ -20,7 +20,7 @@ void Diary::getConfig()
     file.open("diary.config");
 
     getline(file, line);
-    filename = line.substr(6);
+    filename = line.substr(5);
 
     getline(file, line);
     format = line.substr(16);
